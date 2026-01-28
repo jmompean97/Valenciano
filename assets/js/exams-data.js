@@ -108,21 +108,35 @@ const monthMap = {
 
 const BASE_PATH = 'assets/documents/examenes/';
 
+// Estado global de ordenamiento
+let currentOrder = 'desc'; // 'desc' (2025 -> 2010) o 'asc' (2010 -> 2025)
+
 // =========================================
 // RENDERIZADO
 // =========================================
-document.addEventListener('DOMContentLoaded', () => {
+
+window.loadExams = function () {
     const examsGrid = document.getElementById('examsGrid');
 
-    if (examsGrid) {
-        renderExams(examsGrid);
-    }
-});
+    // Si no estamos en la página correcta, salir
+    if (!examsGrid) return;
 
-function renderExams(container) {
-    examsData.forEach(exam => {
+    // 1. Configurar listeners de los botones
+    setupFilterButtons();
+
+    // 2. Ordenar datos
+    const sortedExams = [...examsData].sort((a, b) => {
+        return currentOrder === 'desc' ? b.year - a.year : a.year - b.year;
+    });
+
+    // 3. Renderizar
+    examsGrid.innerHTML = ''; // Limpiar contenido previo
+
+    sortedExams.forEach(exam => {
         const card = document.createElement('div');
         card.className = 'exam-card';
+        // Animación suave de entrada
+        card.style.animation = 'fadeIn 0.5s ease forwards';
 
         let contentHTML = '';
 
@@ -185,6 +199,47 @@ function renderExams(container) {
             </div>
         `;
 
-        container.appendChild(card);
+        examsGrid.appendChild(card);
+    });
+};
+
+function setupFilterButtons() {
+    const buttons = document.querySelectorAll('.btn-filter');
+
+    buttons.forEach(btn => {
+        // Remover listener anterior para evitar duplicados (hack simple: clonar)
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+
+        newBtn.addEventListener('click', (e) => {
+            const sortType = e.target.closest('.btn-filter').dataset.sort;
+
+            // Actualizar estado
+            currentOrder = sortType;
+
+            // Actualizar UI de botones (en ambos grupos: top y bottom)
+            document.querySelectorAll('.btn-filter').forEach(b => {
+                if (b.dataset.sort === sortType) {
+                    b.classList.add('active');
+                } else {
+                    b.classList.remove('active');
+                }
+            });
+
+            // Re-renderizar (AJAX instantáneo local)
+            window.loadExams();
+        });
+
+        // Asegurar estado visual correcto al cargar
+        if (newBtn.dataset.sort === currentOrder) {
+            newBtn.classList.add('active');
+        } else {
+            newBtn.classList.remove('active');
+        }
     });
 }
+
+// Inicialización automática al cargar script por primera vez
+document.addEventListener('DOMContentLoaded', () => {
+    window.loadExams();
+});

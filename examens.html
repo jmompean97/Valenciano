@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/layout.css">
     <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/pages/home.css">
     <link rel="stylesheet" href="assets/css/pages/examens.css">
+    <link rel="stylesheet" href="assets/css/pages/recursos.css">
 </head>
 
 <body>
@@ -41,8 +43,28 @@
             <p class="subtitle">Històric d'exàmens de Valencià des de 2010 fins a l'actualitat</p>
         </div>
 
+        <!-- Controles Superiores -->
+        <div class="controls-container">
+            <button class="btn-filter active" data-sort="desc">
+                ⬇️ Més nous primer
+            </button>
+            <button class="btn-filter" data-sort="asc">
+                ⬆️ Més antics primer
+            </button>
+        </div>
+
         <div class="exams-grid" id="examsGrid">
             <!-- Contenido dinámico via JS -->
+        </div>
+
+        <!-- Controles Inferiores -->
+        <div class="controls-container bottom">
+            <button class="btn-filter active" data-sort="desc">
+                ⬇️ Més nous primer
+            </button>
+            <button class="btn-filter" data-sort="asc">
+                ⬆️ Més antics primer
+            </button>
         </div>
     </div>
 
@@ -59,6 +81,7 @@
     <!-- Scripts -->
     <script src="assets/js/main.js"></script>
     <script src="assets/js/exams-data.js"></script>
+    <script src="assets/js/router.js"></script>
 </body>
 
 </html>
