@@ -1,27 +1,33 @@
-/* =========================================
-   VARIABLES & RESET
-   ========================================= */
 :root {
-    /* Paleta de Colores */
-    --primary-color: #dc2626;         /* Rojo Principal */
-    --primary-dark: #b91c1c;          /* Rojo Oscuro (Hover) */
-    --primary-light: #fef2f2;         /* Rojo Muy Claro (Fondos iconos) */
-    --secondary-bg: #fefae0;          /* Crema Pastel (Fondo Body) */
-    --secondary-bg-alt: #faf3dd;      /* Crema alternativo (Gradiente) */
-    --text-main: #2d3436;             /* Gris Oscuro (Texto Principal) */
-    --text-muted: #4a5568;            /* Gris Medio (Subtítulos) */
+    /* Paleta de Colores Refinada */
+    --primary-color: #dc2626;
+    /* Rojo Principal (Vibrante) */
+    --primary-dark: #991b1b;
+    /* Rojo Sangre (Hover) */
+
+    /* Fondos */
+    --page-bg: #f9fafb;
+    /* Blanco Hielo/Gris muy claro (Fondo Body) */
+    --card-bg: #fff1f2;
+    /* Rojo/Rosa muy pálido (Fondo Cards - Color Secundario) */
+    --nav-bg: rgba(255, 255, 255, 0.95);
+
+    /* Texto */
+    --text-main: #1f2937;
+    /* Gris casi negro (Más suave que negro puro) */
+    --text-muted: #6b7280;
+    /* Gris medio */
     --white: #ffffff;
-    --white-transparent: rgba(255, 255, 255, 0.98);
-    
-    /* Sombras */
-    --shadow-sm: 0 4px 12px rgba(220, 38, 38, 0.1);
-    --shadow-md: 0 10px 30px rgba(220, 38, 38, 0.08);
-    --shadow-lg: 0 20px 60px rgba(220, 38, 38, 0.15);
-    
+
+    /* Sombras (con tinte rojizo sutil) */
+    --shadow-sm: 0 4px 6px -1px rgba(220, 38, 38, 0.05), 0 2px 4px -1px rgba(220, 38, 38, 0.03);
+    --shadow-md: 0 10px 15px -3px rgba(220, 38, 38, 0.08), 0 4px 6px -2px rgba(220, 38, 38, 0.04);
+    --shadow-lg: 0 20px 25px -5px rgba(220, 38, 38, 0.1), 0 10px 10px -5px rgba(220, 38, 38, 0.04);
+
     /* Bordes */
-    --radius-md: 10px;
-    --radius-lg: 20px;
-    --radius-xl: 24px;
+    --radius-md: 12px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
 }
 
 * {
@@ -31,16 +37,23 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(135deg, var(--secondary-bg) 0%, var(--secondary-bg-alt) 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--page-bg);
     color: var(--text-main);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
+    /* Evita scroll horizontal por el menú móvil */
 }
 
 /* Tipografía Básica */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: var(--primary-color);
     line-height: 1.2;
 }
@@ -59,7 +72,8 @@ ul {
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 30px;
-    flex: 1; /* Para que empuje el footer */
+    flex: 1;
+    /* Para que empuje el footer */
     width: 100%;
 }
 

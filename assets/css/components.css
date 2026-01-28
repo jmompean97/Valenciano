@@ -40,11 +40,11 @@
    CARDS GENERALES
    ========================================= */
 .card-base {
-    background: var(--white);
+    background: var(--card-bg);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
     transition: all 0.3s ease;
-    border: 1px solid rgba(220, 38, 38, 0.1);
+    border: 1px solid rgba(220, 38, 38, 0.05);
 }
 
 .card-base:hover {

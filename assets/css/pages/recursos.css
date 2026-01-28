@@ -4,7 +4,7 @@
 }
 
 .resource-item {
-    background: var(--white);
+    background: var(--card-bg);
     padding: 25px 30px;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: space-between;
     transition: all 0.3s ease;
-    border: 1px solid rgba(220, 38, 38, 0.1);
+    border: 1px solid rgba(220, 38, 38, 0.05);
 }
 
 .resource-item:hover {
