@@ -1,0 +1,116 @@
+.exams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.exam-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(220, 38, 38, 0.1);
+}
+
+.exam-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.exam-year {
+    font-size: 2.2em;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    text-align: center;
+    border-bottom: 2px solid rgba(220, 38, 38, 0.1);
+    padding-bottom: 15px;
+}
+
+.exam-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.exam-group {
+    margin-bottom: 5px;
+}
+
+.month-label {
+    display: inline-block;
+    padding: 6px 14px;
+    background: rgba(220, 38, 38, 0.1);
+    border-radius: 8px;
+    font-size: 0.9em;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 12px;
+}
+
+.link-row {
+    display: flex;
+    gap: 10px;
+}
+
+.exam-link {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95em;
+    transition: all 0.2s ease;
+    color: var(--text-main);
+}
+
+.exam-link:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.exam-link.is-special {
+    width: 100%;
+    background: linear-gradient(135deg, var(--white) 0%, #fff1f2 100%);
+    border-color: #fecdd3;
+}
+
+.exam-link.is-special:hover {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+}
+
+.no-solution {
+    opacity: 0.6;
+    background: #edf2f7;
+    cursor: not-allowed;
+    color: #a0aec0;
+}
+
+.no-solution:hover {
+    background: #edf2f7;
+    border-color: #e2e8f0;
+    color: #a0aec0;
+    transform: none;
+    box-shadow: none;
+}
+
+@media (max-width: 768px) {
+    .exams-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .link-row {
+        flex-direction: column;
+    }
+}

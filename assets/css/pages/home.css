@@ -1,0 +1,121 @@
+/* Hero Section */
+.hero {
+    background: var(--white-transparent);
+    backdrop-filter: blur(10px);
+    padding: 80px 60px;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    margin-bottom: 40px;
+    border: 1px solid rgba(220, 38, 38, 0.1);
+}
+
+.hero h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #ef4444 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero .description {
+    color: var(--text-main);
+    font-size: 1.1em;
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+.hero .cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Resources Section (Home Preview) */
+.resources-section {
+    margin-top: 60px;
+}
+
+.section-title {
+    font-size: 2.2em;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.resource-card {
+    background: var(--white);
+    padding: 35px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(220, 38, 38, 0.1);
+    text-align: center;
+}
+
+.resource-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.resource-icon {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.resource-card h3 {
+    color: var(--primary-color);
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.resource-card p {
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.resource-card a {
+    display: inline-block;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.resource-card a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(220, 38, 38, 0.3);
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 40px 30px;
+    }
+
+    .hero h1 {
+        font-size: 2.5em;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
