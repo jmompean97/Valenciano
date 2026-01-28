@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exàmens - Apunts Valencià PAU</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #fefae0 0%, #faf3dd 100%);
+            min-height: 100vh;
+        }
+
+        /* Navegación */
+        nav {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+        }
+
+        .nav-logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #2d3436;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Contenido Principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            color: #dc2626;
+        }
+
+        .subtitle {
+            color: #4a5568;
+            font-size: 1.2em;
+        }
+
+        /* Grid de Exámenes */
+        .exams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .exam-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(220, 38, 38, 0.1);
+        }
+
+        .exam-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(220, 38, 38, 0.15);
+        }
+
+        .exam-year {
+            font-size: 2.2em;
+            font-weight: 800;
+            color: #dc2626;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 2px solid rgba(220, 38, 38, 0.1);
+            padding-bottom: 15px;
+        }
+
+        .exam-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .exam-group {
+            margin-bottom: 5px;
+        }
+
+        .month-label {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(220, 38, 38, 0.1);
+            border-radius: 8px;
+            font-size: 0.9em;
+            font-weight: 700;
+            color: #b91c1c;
+            margin-bottom: 12px;
+        }
+
+        .link-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .exam-link {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #2d3436;
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: all 0.2s ease;
+        }
+
+        .exam-link:hover {
+            background: #dc2626;
+            border-color: #dc2626;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
+        }
+
+        .exam-link.is-special {
+            width: 100%;
+            background: linear-gradient(135deg, #fff 0%, #fff1f2 100%);
+            border-color: #fecdd3;
+        }
+
+        .exam-link.is-special:hover {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+        }
+
+        .no-solution {
+            opacity: 0.6;
+            background: #edf2f7;
+            cursor: not-allowed;
+            color: #a0aec0;
+        }
+
+        .no-solution:hover {
+            background: #edf2f7;
+            border-color: #e2e8f0;
+            color: #a0aec0;
+            transform: none;
+            box-shadow: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+
+            .exams-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .link-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span>📚</span>
+                <span>Valencià PAU</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Inici</a></li>
+                <li><a href="examens.html" class="active">Exàmens</a></li>
+                <li><a href="recursos.html">Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>🎯 Exàmens PAU</h1>
+            <p class="subtitle">Històric d'exàmens de Valencià des de 2010 fins a l'actualitat</p>
+        </div>
+
+        <div class="exams-grid" id="examsGrid">
+            <!-- Contenido dinámico -->
+        </div>
+    </div>
+
+    <script>
+        const exams = [
+            {
+                year: 2025, months: [
+                    { name: 'Juny', enunciado: true, solucion: false },
+                    { name: 'Característiques', file: '2025 - Caracteristicas y criterios generales (nuevo).pdf', isSpecial: true }
+                ]
+            },
+            {
+                year: 2024, months: [
+                    { name: 'Juliol', enunciado: true, solucion: false },
+                    { name: 'Juny', enunciado: true, solucion: false }
+                ]
+            },
+            {
+                year: 2023, months: [
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2022, months: [
+                    { name: 'Juliol', enunciado: true, solucion: true },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2021, months: [
+                    { name: 'Juliol', enunciado: true, solucion: true },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2020, months: [
+                    { name: 'Juliol', enunciado: true, solucion: false },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2019, months: [
+                    { name: 'Juliol', enunciado: true, solucion: false },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2018, months: [
+                    { name: 'Juliol', enunciado: true, solucion: true },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2017, months: [
+                    { name: 'Juliol', enunciado: true, solucion: true },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2016, months: [
+                    { name: 'Juliol', enunciado: true, solucion: true },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2015, months: [
+                    { name: 'Juliol', enunciado: true, solucion: true },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2014, months: [
+                    { name: 'Juliol', enunciado: true, solucion: true },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2013, months: [
+                    { name: 'Juliol', enunciado: true, solucion: true },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2012, months: [
+                    { name: 'Setembre', enunciado: true, solucion: true },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2011, months: [
+                    { name: 'Setembre', enunciado: true, solucion: true },
+                    { name: 'Juny', enunciado: true, solucion: false }
+                ]
+            },
+            {
+                year: 2010, months: [
+                    { name: 'Setembre', enunciado: true, solucion: true },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            }
+        ];
+
+        const monthMap = {
+            'Juny': 'Junio',
+            'Juliol': 'Julio',
+            'Setembre': 'Septiembre',
+            'Característiques': 'Caracteristicas y criterios generales (nuevo)'
+        };
+
+        const examsGrid = document.getElementById('examsGrid');
+
+        exams.forEach(exam => {
+            const card = document.createElement('div');
+            card.className = 'exam-card';
+
+            let contentHTML = '';
+
+            exam.months.forEach(month => {
+                if (month.isSpecial) {
+                    contentHTML += `
+                        <div class="exam-group">
+                            <div class="link-row">
+                                <a href="Exámenes/${month.file}" target="_blank" class="exam-link is-special">
+                                    <span>📋 ${month.name}</span>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    const monthCast = monthMap[month.name];
+                    let linksCells = '';
+
+                    // Botón Enunciado
+                    if (month.enunciado) {
+                        linksCells += `
+                            <a href="Exámenes/${exam.year} - ${monthCast} - Enunciado.pdf" target="_blank" class="exam-link">
+                                📝 Enunciat
+                            </a>`;
+                    } else {
+                        linksCells += `
+                            <div class="exam-link no-solution">
+                                ❌ Enunciat
+                            </div>`;
+                    }
+
+                    // Botón Solución
+                    if (month.solucion) {
+                        linksCells += `
+                            <a href="Exámenes/${exam.year} - ${monthCast} - Solución.pdf" target="_blank" class="exam-link">
+                                ✅ Solució
+                            </a>`;
+                    } else {
+                        linksCells += `
+                            <div class="exam-link no-solution">
+                                ❌ Solució
+                            </div>`;
+                    }
+
+                    contentHTML += `
+                        <div class="exam-group">
+                            <div class="month-label">${month.name}</div>
+                            <div class="link-row">
+                                ${linksCells}
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            card.innerHTML = `
+                <div class="exam-year">${exam.year}</div>
+                <div class="exam-links">
+                    ${contentHTML}
+                </div>
+            `;
+
+            examsGrid.appendChild(card);
+        });
+    </script>
+</body>
+
+</html>
