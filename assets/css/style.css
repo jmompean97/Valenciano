@@ -36,15 +36,18 @@
     box-sizing: border-box;
 }
 
-html {
+html,
+body {
     overflow-x: hidden;
-    /* Evita scroll horizontal por el menú móvil */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
 }
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     background-color: var(--page-bg);
-    color: var(--text-main);
     min-height: 100vh;
     display: flex;
     flex-direction: column;

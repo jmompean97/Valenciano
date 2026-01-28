@@ -90,11 +90,11 @@ nav {
    FOOTER
    ========================================= */
 .site-footer {
-    background: var(--white-transparent);
+    background: var(--white);
     padding: 30px 0;
     margin-top: auto;
     /* Sticky footer behavior */
-    border-top: 1px solid rgba(220, 38, 38, 0.1);
+    border-top: 1px solid rgba(220, 38, 38, 0.05);
 }
 
 .footer-content {
@@ -132,21 +132,27 @@ nav {
     .nav-links {
         position: fixed;
         top: 0;
-        right: -100%;
+        right: 0;
         height: 100vh;
         width: 100%;
         background: var(--white);
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        transition: right 0.3s ease;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: none;
         z-index: 1000;
         padding-top: 60px;
+        transform: translateX(100%);
     }
 
     .nav-links.active {
-        right: 0;
+        transform: translateX(0);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links li {
+        margin: 10px 0;
     }
 
     .nav-links a {
