@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ca">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,10 +17,11 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
+            padding-bottom: 60px;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -35,7 +37,7 @@
 
         h1 {
             color: #667eea;
-            font-size: 2em;
+            font-size: 2.5em;
             margin-bottom: 10px;
         }
 
@@ -44,52 +46,165 @@
             font-size: 1.1em;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        .section-title {
+            color: white;
+            font-size: 1.8em;
             margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        .welcome-text {
-            color: #333;
-            line-height: 1.6;
-            font-size: 1.1em;
+        .exams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .exam-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .exam-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .exam-year {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 15px;
             text-align: center;
         }
 
-        .emoji {
-            font-size: 3em;
-            margin: 20px 0;
+        .exam-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .status {
-            display: inline-block;
-            background: #10b981;
+        .exam-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 15px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 10px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exam-link:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            margin-top: 15px;
+            transform: scale(1.02);
         }
 
-        @media (max-width: 600px) {
+        .exam-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .exam-link:hover::before {
+            left: 100%;
+        }
+
+        .link-icon {
+            font-size: 1.2em;
+        }
+
+        .link-label {
+            flex: 1;
+            margin-left: 10px;
+        }
+
+        .month-label {
+            display: inline-block;
+            padding: 4px 10px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 8px;
+            font-size: 0.85em;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .no-solution {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .no-solution:hover {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            transform: none;
+        }
+
+        .resources-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .resources-title {
+            font-size: 1.5em;
+            color: #667eea;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .resource-item {
+            padding: 15px;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .resource-item a {
+            color: #2d3436;
+            text-decoration: none;
+            font-weight: 600;
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
             h1 {
-                font-size: 1.5em;
+                font-size: 1.8em;
             }
-            
-            .subtitle {
-                font-size: 1em;
+
+            .section-title {
+                font-size: 1.4em;
             }
-            
-            .header, .card {
-                padding: 20px;
+
+            .exams-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -97,16 +212,196 @@
             <p class="subtitle">Autors i Literatura PAU</p>
         </div>
 
-        <div class="card">
-            <div class="emoji">✨</div>
-            <p class="welcome-text">
-                Benvingut/da a la teua app d'estudi de Valencià!<br><br>
-                Aquesta és una versió bàsica. Properament podràs afegir i consultar tots els teus temes.
-            </p>
-            <div style="text-align: center;">
-                <span class="status">✓ App funcionant correctament</span>
+        <!-- Recursos adicionales -->
+        <div class="resources-card">
+            <h2 class="resources-title">📖 Recursos d'Estudi</h2>
+            <div class="resource-item">
+                <span>📄</span>
+                <a href="Apuntes.pdf" target="_blank">Apuntes.pdf</a>
+            </div>
+            <div class="resource-item">
+                <span>✍️</span>
+                <a href="Autores Literatura PAU.pdf" target="_blank">Autores Literatura PAU.pdf</a>
             </div>
         </div>
+
+        <h2 class="section-title">🎯 Exàmens PAU</h2>
+
+        <div class="exams-grid" id="examsGrid">
+            <!-- Los exámenes se generarán dinámicamente con JavaScript -->
+        </div>
     </div>
+
+    <script>
+        // Estructura de exámenes basada en los archivos disponibles
+        const exams = [
+            {
+                year: 2025, months: [
+                    { name: 'Juny', enunciado: true, solucion: false },
+                    { name: 'Característiques', file: '2025 - Caracteristicas y criterios generales (nuevo).pdf', isSpecial: true }
+                ]
+            },
+            {
+                year: 2024, months: [
+                    { name: 'Juliol', enunciado: true, solucion: false },
+                    { name: 'Juny', enunciado: true, solucion: false }
+                ]
+            },
+            {
+                year: 2023, months: [
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2022, months: [
+                    { name: 'Juliol', enunciado: true, solucion: true },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2021, months: [
+                    { name: 'Juliol', enunciado: true, solucion: true },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2020, months: [
+                    { name: 'Juliol', enunciado: true, solucion: false },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2019, months: [
+                    { name: 'Juliol', enunciado: true, solucion: false },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2018, months: [
+                    { name: 'Juliol', enunciado: true, solucion: true },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2017, months: [
+                    { name: 'Juliol', enunciado: true, solucion: true },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2016, months: [
+                    { name: 'Juliol', enunciado: true, solucion: true },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2015, months: [
+                    { name: 'Juliol', enunciado: true, solucion: true },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2014, months: [
+                    { name: 'Juliol', enunciado: true, solucion: true },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2013, months: [
+                    { name: 'Juliol', enunciado: true, solucion: true },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2012, months: [
+                    { name: 'Setembre', enunciado: true, solucion: true },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            },
+            {
+                year: 2011, months: [
+                    { name: 'Setembre', enunciado: true, solucion: true },
+                    { name: 'Juny', enunciado: true, solucion: false }
+                ]
+            },
+            {
+                year: 2010, months: [
+                    { name: 'Setembre', enunciado: true, solucion: true },
+                    { name: 'Juny', enunciado: true, solucion: true }
+                ]
+            }
+        ];
+
+        // Mapa de nombres en castellano (como están los archivos)
+        const monthMap = {
+            'Juny': 'Junio',
+            'Juliol': 'Julio',
+            'Setembre': 'Septiembre',
+            'Característiques': 'Caracteristicas y criterios generales (nuevo)'
+        };
+
+        // Generar las tarjetas de exámenes
+        const examsGrid = document.getElementById('examsGrid');
+
+        exams.forEach(exam => {
+            const card = document.createElement('div');
+            card.className = 'exam-card';
+
+            let linksHTML = '';
+            exam.months.forEach(month => {
+                if (month.isSpecial) {
+                    linksHTML += `
+                        <a href="Exámenes/${month.file}" target="_blank" class="exam-link">
+                            <span class="link-icon">📋</span>
+                            <span class="link-label">${month.name}</span>
+                        </a>
+                    `;
+                } else {
+                    const monthCast = monthMap[month.name];
+                    linksHTML += `
+                        <div>
+                            <div class="month-label">${month.name}</div>
+                    `;
+
+                    if (month.enunciado) {
+                        linksHTML += `
+                            <a href="Exámenes/${exam.year} - ${monthCast} - Enunciado.pdf" target="_blank" class="exam-link">
+                                <span class="link-icon">📝</span>
+                                <span class="link-label">Enunciat</span>
+                            </a>
+                        `;
+                    }
+
+                    if (month.solucion) {
+                        linksHTML += `
+                            <a href="Exámenes/${exam.year} - ${monthCast} - Solución.pdf" target="_blank" class="exam-link">
+                                <span class="link-icon">✅</span>
+                                <span class="link-label">Solució</span>
+                            </a>
+                        `;
+                    } else if (month.enunciado) {
+                        linksHTML += `
+                            <div class="exam-link no-solution">
+                                <span class="link-icon">❌</span>
+                                <span class="link-label">Sense solució</span>
+                            </div>
+                        `;
+                    }
+
+                    linksHTML += `</div>`;
+                }
+            });
+
+            card.innerHTML = `
+                <div class="exam-year">${exam.year}</div>
+                <div class="exam-links">
+                    ${linksHTML}
+                </div>
+            `;
+
+            examsGrid.appendChild(card);
+        });
+    </script>
 </body>
+
 </html>
